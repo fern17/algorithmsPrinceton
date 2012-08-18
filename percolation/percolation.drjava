@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<drjava version="drjava-20100913-r5387">
+  <project autorefresh="false" main="" root="" work="">
+    <createjar file=""/>
+    <source>
+      <file active="true" name="Percolation.java" package="" timestamp="18-Aug-2012 02:36:22">
+        <select from="2" to="2"/>
+        <scroll column="0" row="0"/>
+      </file>
+    </source>
+    <included/>
+    <excluded/>
+    <collapsed/>
+    <classpath>
+      <file absolute="false" name="../"/>
+    </classpath>
+    <breakpoints/>
+    <watches/>
+    <bookmarks/>
+  </project>
+</drjava>
