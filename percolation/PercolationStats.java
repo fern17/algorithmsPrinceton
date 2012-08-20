@@ -10,7 +10,7 @@ public class PercolationStats {
         for (int i = 0; i < T; i++) {
             Percolation per = new Percolation(N);
             int steps = 0;
-            Stopwatch clock = new Stopwatch();
+            //Stopwatch clock = new Stopwatch();
             while ((!per.percolates()) && (steps < N*N)) { 
                 //prevents infinite loop
                 int x = 1 + StdRandom.uniform(N);
@@ -25,32 +25,38 @@ public class PercolationStats {
                 steps++; //increases the number of runs    
             }
 
-            double elapsed = clock.elapsedTime();
+            //double elapsed = clock.elapsedTime();
             double threshold = (double) steps/N;
+            StdOut.println(steps + "/" + N + "=" + threshold );
             this.allruns[i] = threshold; 
         }
     }
 
     public double mean() {
         // sample mean of percolation threshold
-        return StdStats.mean(allruns, 0, allruns.length);
+        return StdStats.mean(allruns, 0, allruns.length-1);
     }
 
     public double stddev() {                   
         // sample standard deviation of percolation threshold
-        return StdStats.stddev(allruns, 0, allruns.length);
+        return StdStats.stddev(allruns, 0, allruns.length-1);
     }
 
     public static void main(String[] args) {   // test client
         if (args.length > 1) {
             int N = Integer.parseInt(args[0]);
             int T = Integer.parseInt(args[1]);
-
+            
             PercolationStats ps = new PercolationStats(N, T);
             double media    = ps.mean();
             double devest   = ps.stddev();
             double inicio   = media - 1.96*devest/Math.sqrt(T);
             double fin      = media + 1.96*devest/Math.sqrt(T);
+            StdOut.println(media);
+            StdOut.println(devest);
+
+            StdOut.println(inicio);
+            StdOut.println(fin);
         }
     }
 }
