@@ -15,31 +15,33 @@ public class PercolationStats {
                 //prevents infinite loop
                 int x = 1 + StdRandom.uniform(N);
                 int y = 1 + StdRandom.uniform(N);
-                while (!per.isOpen(x, y)) { 
+                while (per.isOpen(x, y)) { 
                     //if not is open, regenerates random until it does
                     x = 1 + StdRandom.uniform(N);
                     y = 1 + StdRandom.uniform(N);
                 }
-
                 per.open(x, y); //open site
                 steps++; //increases the number of runs    
             }
 
             //double elapsed = clock.elapsedTime();
-            double threshold = (double) steps/N;
-            StdOut.println(steps + "/" + N + "=" + threshold );
+            double threshold = (double) steps/(N*N);
+            //StdOut.println(steps + "/" + N*N + "=" + threshold );
             this.allruns[i] = threshold; 
         }
     }
 
     public double mean() {
         // sample mean of percolation threshold
-        return StdStats.mean(allruns, 0, allruns.length-1);
+        return StdStats.mean(allruns);
     }
 
     public double stddev() {                   
         // sample standard deviation of percolation threshold
-        return StdStats.stddev(allruns, 0, allruns.length-1);
+        if (allruns.length <= 1)
+            return Double.NaN;
+        else 
+            return StdStats.stddev(allruns);
     }
 
     public static void main(String[] args) {   // test client
@@ -54,9 +56,8 @@ public class PercolationStats {
             double fin      = media + 1.96*devest/Math.sqrt(T);
             StdOut.println(media);
             StdOut.println(devest);
-
-            StdOut.println(inicio);
-            StdOut.println(fin);
+            StdOut.println(inicio + ", " + fin);
+            
         }
     }
 }
