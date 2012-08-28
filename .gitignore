@@ -8,3 +8,4 @@ findbugs-2.0.1/*
 *.ear
 *.*~
 *swp
+*.zip

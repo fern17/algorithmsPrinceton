@@ -1,6 +1,5 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.lang.UnsupportedOperationException;
 
 public class Deque<Item> implements Iterable<Item> {
     private Node first, last;
@@ -20,7 +19,8 @@ public class Deque<Item> implements Iterable<Item> {
 
     public boolean isEmpty() {
         // is the deque empty?
-        return first == null && last == null;
+//        return first == null && last == null;
+        return size == 0;
     }
 
     public int size() {
@@ -111,10 +111,10 @@ public class Deque<Item> implements Iterable<Item> {
         return it;
     }
 
-    public void print() {
+    private void print() {
         StdOut.println("Printing");
         Iterator<Item> i = this.iterator();
-        while (i.hasNext()){
+        while (i.hasNext()) {
             Item it = i.next();
             StdOut.println(it);
         }
@@ -148,10 +148,17 @@ public class Deque<Item> implements Iterable<Item> {
     public static void main(String[] args) {   
         // test client
         Deque<Integer> dq = new Deque<Integer>();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++) {
+            StdOut.println(dq.isEmpty());
             dq.addFirst(i);
-        
-        for(Integer i : dq)
+        }
+        for (int i = 0; i < 10; i++) {
+            dq.removeFirst();
+            StdOut.println(dq.isEmpty());
+        }
+
+
+        for (int i : dq)
             StdOut.println(i);
         
     }
